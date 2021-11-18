@@ -50,8 +50,8 @@ pipeline {
         stage('Run terraform') {
             steps {
                 dir('infrastructure/terraform') { 
-                    withCredentials([file(credentialsId: 'terraform-pem', variable: 'terraform-panda')]) {
-                        sh "echo ${terraform-panda} > ../panda.pem"
+                    withCredentials([file(credentialsId: 'terraform-pem', variable: 'terraformpanda')]) {
+                        sh "cp \$terraformpanda ../panda.pem"
                         sh 'terraform init && terraform apply -auto-approve'
                     }
                 } 
