@@ -54,7 +54,7 @@ pipeline {
                 dir('infrastructure/terraform') { 
                     withCredentials([file(credentialsId: 'terraform-pem', variable: 'terraformpanda')]) {
                         sh "cp \$terraformpanda ../panda.pem"
-                        sh 'terraform init && terraform apply -auto-approve'
+                        sh 'terraform init && terraform apply -auto-approve -var-file panda.tfvars'
                     }
                 } 
             }
