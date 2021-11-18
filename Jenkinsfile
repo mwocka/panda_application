@@ -27,7 +27,7 @@ pipeline {
         }   
         stage('Build Docker image'){
             steps {
-               sh "mvn package -Pdocker"
+               sh "mvn package -Pdocker -Dmaven.test.skip=true"
             }
         }
         stage('Run Docker app') {
@@ -51,7 +51,8 @@ pipeline {
             steps {
                 dir('infrastructure/terraform') { 
                     withCredentials([file(credentialsId: 'terraform-pem', variable: 'terraform-panda')]) {
-                       sh 'terraform init && terraform apply -auto-approve'
+                        sh "echo ${terraform-panda} > ../panda.pem"
+                        sh 'terraform init && terraform apply -auto-approve'
                     }
                 } 
             }
