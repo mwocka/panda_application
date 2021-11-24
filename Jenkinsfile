@@ -80,7 +80,7 @@ pipeline {
             steps {
                 input 'Remove environment'
                 dir('infrastructure/terraform') { 
-                    sh 'terraform destroy -auto-approve'
+                    sh 'terraform destroy -auto-approve -var-file panda.tfvars'
                 }
             }
         }
