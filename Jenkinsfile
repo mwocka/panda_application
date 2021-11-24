@@ -76,6 +76,14 @@ pipeline {
                 } 
             }
         }
+        stage('Remove environment') {
+            steps {
+                input 'Remove environment'
+                dir('infrastructure/terraform') { 
+                    sh 'terraform destroy -auto-approve'
+                }
+            }
+        }
     }
     post {
         always {  
