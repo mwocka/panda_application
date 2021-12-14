@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: worker
+  name: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - image: pandaacademy/worker:1.0
+        name: worker
+        env:
+        - name: POSTGRES_USER
+          value: panda
+        - name: POSTGRES_PASSWORD
+          value: panda
+        - name: DB_HOST
+          value: db-svc.database
+        - name: REDIS_HOST
+          value: redis-svc.database
+        resources: {}
+status: {}

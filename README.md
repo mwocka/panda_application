@@ -1,13 +1,17 @@
-# panda_application
-W tym repozytorium znajdziecie pliki źródłowe aplikacji pozwalające na powrócenie do wybranego etapu pracy podczas kursu DevOps Core.
+# Kuberntes
 
-## Galezie 
+Dodatkowy branch z ostatnich zajęć, na którym znajdziecie wszystkie pliki, które należy uruchomić. W każdym z osobnych katalogów, znajdziecie aplikacje które możecie uruchomić komendą: `kubectl apply -f katalog/`.
 
-|Galaz  | Blok  | Opis  | 
-|---|---|---|
-| master | Maven 1 | Podstawowa wersja aplikacji |
-| selenium_local | Maven 2 | Testy selenium wykonywane "lokalnie" |
-| docker | Maven 2 | Profil z budowaniem obrazu dockerowego |
-| selenium_grid  | Projekt CI/CD/CD 2   | Testy selenium z użyciem Selenium Grid |
-| pipeline | Projekt CI/CD/CD 5 | Jenkinsfile |
-| infrastructure | Projekt CI/CD/CD 6 | Dodany katalog infrastructure z plikami terraform i ansible| Końcowa wersja projektu | 
+Jako pierwszy krok, należy stworzyć 3 namespace. Można to zrobić wykonując komendy podane poniżej.
+
+```
+kubectl create ns vote
+kubectl create ns result
+kubectl create ns database
+```
+
+Następnie za pomocą komendy `kubectl apply -f nazwa_katalogu/` uruchamiamy aplikacje.
+
+## Architektura
+
+![Application Architecture](assets/arch.png)

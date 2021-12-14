@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: result
+  name: result
+  namespace: result
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: result
+  template:
+    metadata:
+      labels:
+        app: result
+    spec:
+      containers:
+      - image: pandaacademy/result:1.0
+        name: result
+        env:
+        - name: POSTGRES_USER
+          value: panda
+        - name: POSTGRES_PASSWORD
+          value: panda
+        - name: DB_HOST
+          value: db-svc.database
+        resources: {}
+status: {}
