@@ -1,6 +1,6 @@
 pipeline {
     agent {
-      label '007'
+      label 'Slave'
     }
     options {
         ansiColor('xterm')
@@ -47,7 +47,7 @@ pipeline {
         */
         stage('Deploy jar to artifactory') {
             steps {
-                configFileProvider([configFile(fileId: '5cc99d94-ac82-447e-9411-ad6e5e3f900d', variable: 'MAVEN_GLOBAL_SETTINGS')]) {
+                configFileProvider([configFile(fileId: 'd50849db-18c4-4509-a028-571f67e8bd94', variable: 'MAVEN_GLOBAL_SETTINGS')]) {
                 sh "mvn -s $MAVEN_GLOBAL_SETTINGS deploy -Dmaven.test.skip=true -e"
                 }
             }     
