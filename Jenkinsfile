@@ -94,5 +94,12 @@ pipeline {
             sh 'docker stop pandaapp'
             deleteDir()
         }
+        failure {
+            dir('infrastructure/terraform') { 
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS']]) {
+                    sh 'terraform destroy -auto-approve -var-file panda.tfvars'
+                }
+            }
+        }
     }
 }
